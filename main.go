@@ -88,6 +88,30 @@ var (
 			},
 		},
 	}
+
+	vote = schema.Schema{
+		Description: `the vote object`,
+		Fields: schema.Fields{
+			"id":      schema.IDField,
+			"created": schema.CreatedField,
+			"updated": schema.UpdatedField,
+
+			"auth": {
+				Required:   true,
+				Filterable: true,
+				Validator: &schema.Reference{
+					Path: "users",
+				},
+			},
+			"song": {
+				Required:   true,
+				Filterable: true,
+				Validator: &schema.Reference{
+					Path: "songs",
+				},
+			},
+		},
+	}
 )
 
 func main() {
